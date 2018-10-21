@@ -1,27 +1,25 @@
 <template>
-  <el-row>
-    <el-col :span="16" :offset="4" :xs="{span: 24, offset: 0}">
-      <el-row :gutter="10" class="functional-line">
-        <el-col :span="6">
-          <el-select class="task-type-selector" v-model="selected_task_type" placeholder="全部类型">
-            <el-option v-for="item in task_type_options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-        </el-col>
-        <el-col :span="11">
-          <el-input placeholder="搜索">
-            <el-button slot="append" icon="el-icon-search"></el-button>
-          </el-input>
-        </el-col>
-        <el-col :span="7">
-          <router-link to="/new-task">
-            <el-button type="primary" class="new-task-button">新建任务</el-button>
-          </router-link>
-        </el-col>
-      </el-row>
-      <el-row>
-        <task-list-element v-for="task in task_list" :key="task.title" :task="task"></task-list-element>
-      </el-row>
-    </el-col>
+  <el-row class="task-list">
+    <el-row :gutter="10" class="functional-line">
+      <el-col :span="6">
+        <el-select class="task-type-selector" v-model="selected_task_type" placeholder="全部类型">
+          <el-option v-for="item in task_type_options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+      </el-col>
+      <el-col :span="11">
+        <el-input placeholder="搜索">
+          <el-button slot="append" icon="el-icon-search"></el-button>
+        </el-input>
+      </el-col>
+      <el-col :span="7">
+        <router-link to="/new-task">
+          <el-button type="primary" class="new-task-button">新建任务</el-button>
+        </router-link>
+      </el-col>
+    </el-row>
+    <el-row>
+      <task-list-element v-for="task in task_list" :key="task.id" :task="task"></task-list-element>
+    </el-row>
   </el-row>
 </template>
 
@@ -60,7 +58,7 @@
 
       let vm = this
 
-      request(this, 'get', APIS.GET_TASK_LIST_URL, null, data => {
+      request(this, 'get', APIS.GET_TASK_LIST_URL, null, true, data => {
         vm.task_list = data.data.task_list
       })
     }
@@ -69,15 +67,15 @@
 
 <style scoped>
   .task-list-element {
-    margin-bottom: 10px;
+    margin-bottom: -1px;
   }
 
   .new-task-button {
     width: 100%;
   }
 
-
   .functional-line {
     margin-bottom: 20px;
   }
+
 </style>

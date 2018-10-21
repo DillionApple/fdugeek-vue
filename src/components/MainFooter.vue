@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20" class="root">
-    <el-col :span="24">Copyright DillionMango@gmail.com 2018</el-col>
+    <el-col :span="24">CS Plus Copyright © 2018</el-col>
   </el-row>
 </template>
 
@@ -12,8 +12,9 @@
 
 <style scoped>
   .el-row {
-    background-color: lightgrey;
+    background-color: #1F2D3D;
     text-align: center;
     line-height: 60px;
+    color: #FFFFFF;
   }
 </style>

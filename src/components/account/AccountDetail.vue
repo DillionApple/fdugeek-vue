@@ -1,6 +1,6 @@
 <template>
-  <el-row>
-    <el-col :span="18" :offset="3">
+  <el-row class="account">
+    <el-col :span="24">
       <el-row class="user-icon-line" :gutter="50">
         <el-col :span="12" class="user-icon-col">
           <img :src="icon_url" class="user-icon">
@@ -24,8 +24,24 @@
         <el-col :span="8" class="input-label">
           学号：
         </el-col>
-        <el-col :span="10" class="input-component>">
+        <el-col :span="10" class="input-component">
           <el-input v-model="student_id" :disabled="true"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="input-line">
+        <el-col :span="8" class="input-label">
+          学院：
+        </el-col>
+        <el-col :span="10" class="input-component">
+          <el-input v-model="school"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="input-line">
+        <el-col :span="8" class="input-label">
+          专业：
+        </el-col>
+        <el-col :span="10" class="input-component">
+          <el-input v-model="major"></el-input>
         </el-col>
       </el-row>
       <el-row class="input-line">
@@ -50,7 +66,7 @@
   import APIS from '@/api/api'
 
     export default {
-      name: "Account",
+      name: "AccountDetail",
       methods: {
         change_icon(f) {
 
@@ -90,12 +106,16 @@
           nickname: "",
           gender: "",
           student_id: "",
+          school: "",
+          major: "",
         }
       },
       mounted() {
         this.nickname = this.$store.state.user_info.nickname
         this.gender = this.$store.state.user_info.gender
         this.student_id = this.$store.state.user_info.username
+        this.school = this.$store.state.user_info.school
+        this.major = this.$store.state.user_info.major
       }
     }
 </script>

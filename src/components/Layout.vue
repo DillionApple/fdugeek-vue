@@ -34,14 +34,14 @@
 
   .el-main {
     margin-top: 60px;
-    margin-bottom: 60px;
     z-index: 0;
+    background-color: #F0F2F5;
+    min-height: 700px;
   }
 
   .el-footer {
     padding-left: 0;
     padding-right: 0;
-    position: fixed;
     width: 100%;
     bottom: 0;
     z-index: 1;

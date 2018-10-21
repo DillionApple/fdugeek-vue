@@ -6,19 +6,16 @@ axios.defaults.withCredentials = true
 Vue.use(VueAxios, axios)
 
 
-function request(context, method, url, data, closure) {
+function request(context, method, url, data, login_redirect, closure) {
   let req;
   if (method == "get") {
-    req = context.axios.get(url);
+    req = context.axios.get(url, {params: data});
   } else if (method == "post") {
     req = context.axios.post(url, data)
   }
   req.then(response => {
     if (response.data.err_code < 0) {
-      if (response.data.message == "Login Required") {
-        context.$router.push({name: 'login'})
-        return ret
-      }
+
       const h = context.$createElement;
 
       context.$notify({
@@ -27,6 +24,10 @@ function request(context, method, url, data, closure) {
       })
     }
     closure(response.data)
+  }, response => {
+    if (response.response.data.message == "Login Required" && login_redirect) {
+      context.$router.push({name: 'login'})
+    }
   })
 }
 

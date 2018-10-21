@@ -1,34 +1,31 @@
 <template>
   <div class="root task-list-element">
     <el-row class="header">
-      <el-col :span="12" :xs="8">
-        <img :src="'http://127.0.0.1:8000' + task.creator.icon" class="user-icon"> {{ task.creator.nickname }}
-      </el-col>
-      <el-col :span="12"  :xs="16" class="buttons">
-        <router-link :to="'/task-detail/' + task.task_id">
-          <el-button type="info">详情</el-button>
-        </router-link>
+      <el-col :span="24">
+        <img :src="'http://127.0.0.1:8000' + task.creator.icon" class="user-icon"> {{ task.creator.nickname }} | {{ task.create_time }} 发布
       </el-col>
     </el-row>
-    <hr>
     <el-row class="main">
       <el-row class="title">
         <el-col :span="24">
-          NO.{{ task.task_id }} {{ task.title }}
+          <router-link :to="'/task-detail/' + task.task_id" class="task-link">
+            NO.{{ task.task_id }} {{ task.title }}
+          </router-link>
         </el-col>
       </el-row>
       <el-row class="extra">
-        <el-col :span="8" class="type">
-          <span class="light-color">类型：</span><el-tag type="info">{{ task.type }}</el-tag>
-        </el-col>
-        <el-col :span="16" class="due-time">
-          <span class="light-color">报名截止：</span>{{ task.due_time }}
+        <el-col :span="24" class="task-detail-line">
+          <span class="task-detail-item">
+            <span class="light-color">类型：</span><span>{{ task.type }}</span>
+          </span>
+          <span class="task-detail-item">
+            <span class="light-color">报名人数：</span><span>{{ task. application_count }}</span>
+          </span>
+          <span class="task-detail-item">
+            <span class="light-color">报名截止：</span><span>{{ task.due_time}}</span>
+          </span>
         </el-col>
       </el-row>
-    </el-row>
-    <hr>
-    <el-row class="footer">
-      <span class="light-color">{{ task.create_time }} 发布 | {{ task.application_count }}人报名</span>
     </el-row>
   </div>
 </template>
@@ -49,8 +46,8 @@
 <style scoped>
   .root {
     text-align: left;
-    font-family: "Microsoft YaHei";
-    border: solid 1px lightgrey;
+    border-top: solid 1px #F0F2F5;
+    border-bottom: solid 1px #F0F2F5;
     border-radius: 0;
     padding: 10px;
   }
@@ -63,23 +60,15 @@
     line-height: 40px;
   }
 
-  .header .buttons {
+  .header .task-extra-info {
     text-align: right;
   }
 
   .title {
     line-height: 60px;
-    font-size: 30px;
+    font-size: 18px;
   }
 
-  .extra .due-time {
-    text-align: right;
-  }
-
-  .footer {
-    line-height: 30px;
-    font-size: 14px;
-  }
 
   .light-color {
     color: #727F8E;
@@ -94,12 +83,21 @@
   }
 
   .user-icon {
-    height: 35px;
-    width: 35px;
+    height: 25px;
+    width: 25px;
     position: relative;
     object-fit: cover;
     top: 10px;
-    border-radius: 100px;
+    border-radius: 2px;
+  }
+
+  .task-link {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .task-detail-line .task-detail-item {
+    margin-right: 20px;
   }
 
 </style>

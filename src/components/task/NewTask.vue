@@ -29,10 +29,18 @@
       </el-row>
       <el-row class="multi-line-row">
         <el-col :span="6" class="input-label">
-          描述：
+          需求描述：
         </el-col>
         <el-col :span="18" class="input-component">
           <el-input type="textarea" :rows="10" :disabled="!editable" v-model="task.description"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="multi-line-row">
+        <el-col :span="6" class="input-label">
+          报名要求：
+        </el-col>
+        <el-col :span="18" class="input-component">
+          <el-input type="textarea" :rows="5" :disabled="!editable" v-model="task.requirement"></el-input>
         </el-col>
       </el-row>
       <el-row class="multi-line-row">
@@ -98,6 +106,10 @@
         }
       },
       mounted() {
+        if (!this.$store.state.logined) {
+          this.$router.push({name: "login"})
+          return
+        }
         if (this.task_id > -1) {
           this.axios.get("http://127.0.0.1:8000/task/detail/", {
             params: {
@@ -124,7 +136,6 @@
 
   .input-label {
     text-align: right;
-    font-size: 18px;
     color: #727F8E;
   }
 

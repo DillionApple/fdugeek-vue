@@ -33,5 +33,20 @@ export default {
 
 body {
   margin: 0 0 0 0;
+  font-size: 14px;
+  font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Arial, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, sans-serif;
 }
+
+
+.card {
+  background-color: #FFFFFF;
+  padding: 25px 40px 25px 40px;
+  border-radius: 3px;
+  box-shadow: 0px 3px 10px #DDDDDD;
+}
+
+.light-color {
+  color: #727F8E;
+}
+
 </style>
