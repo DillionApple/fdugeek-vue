@@ -23,7 +23,24 @@ const mutations = {
   }
 }
 
+const getters = {
+  get_contact_methods_string: state => {
+    var ret = ""
+    if (state.user_info.mobile_phone) {
+      ret = ret + "手机：" + state.user_info.mobile_phone + "\n"
+    }
+    if (state.user_info.wechat) {
+      ret = ret + "微信：" + state.user_info.wechat + "\n"
+    }
+    if (state.user_info.qq) {
+      ret = ret + "QQ：" + state.user_info.qq + "\n"
+    }
+    return ret
+  }
+}
+
 export default new Vuex.Store({
   state,
-  mutations
+  mutations,
+  getters
 })

@@ -2,7 +2,8 @@
   <div class="root task-list-element">
     <el-row class="header">
       <el-col :span="24">
-        <img :src="'http://127.0.0.1:8000' + task.creator.icon" class="user-icon"> {{ task.creator.nickname }} | {{ task.create_time }} 发布
+        <img :src="user_icon_url" class="user-icon-small"> {{ task.creator.nickname }} | {{ task.create_time }} 发布
+        <task-state-tag :task_state="task.state"></task-state-tag>
       </el-col>
     </el-row>
     <el-row class="main">
@@ -16,7 +17,7 @@
       <el-row class="extra">
         <el-col :span="24" class="task-detail-line">
           <span class="task-detail-item">
-            <span class="light-color">类型：</span><span>{{ task.type }}</span>
+            <span class="light-color">类型：</span><span><el-tag size="small">{{ task_type }}</el-tag></span>
           </span>
           <span class="task-detail-item">
             <span class="light-color">报名人数：</span><span>{{ task. application_count }}</span>
@@ -33,13 +34,25 @@
 <script>
 
 
-  import MEDIA_ROOT from "@/api/api"
+  import APIS from "@/api/api"
+  import TASK_TYPE_MAP from "@/api/task_type_map"
+
+  import TaskStateTag from "@/components/task/TaskStateTag"
 
     export default {
       name: "TaskListElement",
+      components: {TaskStateTag, },
       props: {
         task : {}
-      }
+      },
+      computed: {
+        user_icon_url() {
+          return APIS.MEDIA_ROOT + this.task.creator.icon
+        },
+        task_type() {
+          return TASK_TYPE_MAP[this.task.type]
+        }
+      },
     }
 </script>
 
@@ -82,13 +95,9 @@
     margin-bottom: 10px;
   }
 
-  .user-icon {
-    height: 25px;
-    width: 25px;
+  .user-icon-small {
     position: relative;
-    object-fit: cover;
-    top: 10px;
-    border-radius: 2px;
+    top: 7px;
   }
 
   .task-link {

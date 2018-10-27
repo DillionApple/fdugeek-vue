@@ -1,18 +1,24 @@
 <template>
   <el-row :gutter="20" class="root">
-    <el-col :span="6" :xs="12" class="logo">
+    <el-col :span="11" :offset="1" class="logo">
       <router-link :to="logo_redirect_url">
-        <span class="logo">FDU CS Plus</span>
+        <span class="logo">FDU GEEK</span>
       </router-link>
     </el-col>
-    <el-col :span="6" :offset="12" :xs="{span: 12, offset: 0}">
+    <el-col :span="11" class="function-buttons">
       <div v-if="$store.state.logined">
-        <img :src="media_root + $store.state.user_info.icon" class="user-icon">
         <el-popover
           placement="bottom"
           width="100"
           trigger="hover">
           <el-row>
+            <el-row class="account-popover-link">
+              <router-link to="/new-task/">
+                <el-button>
+                  <i class="el-icon-circle-plus-outline"></i> 发布需求
+                </el-button>
+              </router-link>
+            </el-row>
             <el-row class="account-popover-link">
               <router-link to="/account/detail">
                 <el-button>
@@ -35,7 +41,7 @@
               </router-link>
             </el-row>
           </el-row>
-          <el-button slot="reference">{{ this.$store.state.user_info.nickname }}</el-button>
+          <el-button slot="reference" class="nickname_button">{{ this.$store.state.user_info.nickname }} ▼ </el-button>
         </el-popover>
         <el-button type="primary" @click="do_logout">登出</el-button>
       </div>
@@ -87,6 +93,11 @@
 </script>
 
 <style scoped>
+
+  .nickname_button {
+    border: 0px;
+  }
+
   .root {
     background-color: #FFF;
     line-height: 60px;
@@ -99,10 +110,15 @@
     font-size: 30px;
     font-weight: bolder;
     color: #000;
+    text-align: left;
   }
 
   .logo a {
     text-decoration: none;
+  }
+
+  .function-buttons {
+    text-align: right;
   }
 
   .username {
@@ -128,11 +144,9 @@
     font-weight: lighter;
   }
 
-  .user-icon {
-    width: 30px;
+  .user-icon-small {
     height: 30px;
-    object-fit: cover;
-    border-radius: 5px;
+    width: 30px;
     top: 10px;
     position: relative;
   }

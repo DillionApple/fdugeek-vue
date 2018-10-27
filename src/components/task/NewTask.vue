@@ -14,7 +14,7 @@
           分类：
         </el-col>
         <el-col :span="18" class="input-component">
-          <el-select class="task-type-selector" v-model="task.type" :disabled="!editable" placeholder="全部类型">
+          <el-select class="task-type-selector" v-model="task.type" :disabled="!editable" placeholder="请选择需求类型">
             <el-option v-for="item in this.task_type_options" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-col>
@@ -24,7 +24,7 @@
           报名截止日期：
         </el-col>
         <el-col :span="18" class="input-component">
-          <el-date-picker :disabled="!editable" v-model="task.due_time"></el-date-picker>
+          <el-date-picker :disabled="!editable" v-model="task.due_time" value-format="yyyy-MM-dd HH:mm"></el-date-picker>
         </el-col>
       </el-row>
       <el-row class="multi-line-row">
@@ -64,6 +64,10 @@
 </template>
 
 <script>
+
+  import request from '@/api/request'
+  import APIS from '@/api/api'
+
     export default {
       name: "NewTask",
       data() {
@@ -71,9 +75,6 @@
           task: {},
           task_type_options: [
             {
-              value: "",
-              label: "全部类型"
-            }, {
               value: "build_group",
               label: "开发团队招募"
             }, {
@@ -82,8 +83,11 @@
             }, {
               value: "tutor",
               label: "家教"
+            }, {
+              value: "others",
+              label: "其它",
             }
-          ]
+          ],
         }
       },
       props: {
@@ -91,32 +95,45 @@
           type: Boolean,
           default: true
         },
-        task_id: {
-          type: Number,
-          default: -1
-        }
       },
       methods: {
         submit() {
           var vm = this
-          this.axios.post("http://127.0.0.1:8000/task/new/", this.task).then(response => {
-            alert("发布成功")
-            vm.$router.push({name: "main"})
-          })
+
+          if (vm.task.task_id != -1) {
+            request(vm, 'post', APIS.MODIFY_TASK_URL, vm.task, true, response_data => {
+              const h = vm.$createElement
+              vm.$notify({
+                title: "提示",
+                message: h('div', {style: 'color: teal'}, "修改成功")
+              })
+              vm.$router.push({name: 'task-list'})
+            })
+          } else {
+            request(vm, 'post', APIS.CREATE_NEW_TASK_URL, vm.task, true, response_data => {
+              const h = vm.$createElement
+              vm.$notify({
+                title: '提示',
+                message: h('div', {style: 'color: teal'}, "发布成功")
+              })
+              vm.$router.push({name: 'task-list'})
+            })
+          }
         }
       },
       mounted() {
-        if (!this.$store.state.logined) {
-          this.$router.push({name: "login"})
-          return
+
+        let vm = this
+
+        if (this.$route.params.task_id == null) {
+          this.task.task_id = -1
+        } else {
+          this.task.task_id = this.$route.params.task_id
         }
-        if (this.task_id > -1) {
-          this.axios.get("http://127.0.0.1:8000/task/detail/", {
-            params: {
-              task_id: this.task_id
-            }
-          }).then((response) => {
-            this.task = response.data.data.task
+
+        if (this.task.task_id != -1) {
+          request(vm, 'get', APIS.GET_TASK_DETAIL_URL, {task_id: this.task.task_id}, true, response_data => {
+            this.task = response_data.data.task
           })
         }
       }

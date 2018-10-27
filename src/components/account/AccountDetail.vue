@@ -3,7 +3,7 @@
     <el-col :span="24">
       <el-row class="user-icon-line" :gutter="50">
         <el-col :span="12" class="user-icon-col">
-          <img :src="icon_url" class="user-icon">
+          <img :src="user_icon" class="user-icon">
         </el-col>
         <el-col :span="12" class="change-user-icon-btn-col">
           <label for="file-upload" class="custom-file-upload">
@@ -14,18 +14,18 @@
       </el-row>
       <el-row class="input-line">
         <el-col :span="8" class="input-label">
-          昵称：
+          姓名：
         </el-col>
         <el-col :span="10" class="input-component>">
-          <el-input v-model="nickname"></el-input>
+          <el-input v-model="user_info.nickname"></el-input>
         </el-col>
       </el-row>
       <el-row class="input-line">
         <el-col :span="8" class="input-label">
-          学号：
+          学号/工号：
         </el-col>
         <el-col :span="10" class="input-component">
-          <el-input v-model="student_id" :disabled="true"></el-input>
+          <el-input v-model="user_info.username" :disabled="true"></el-input>
         </el-col>
       </el-row>
       <el-row class="input-line">
@@ -33,7 +33,7 @@
           学院：
         </el-col>
         <el-col :span="10" class="input-component">
-          <el-input v-model="school"></el-input>
+          <el-input v-model="user_info.school"></el-input>
         </el-col>
       </el-row>
       <el-row class="input-line">
@@ -41,7 +41,7 @@
           专业：
         </el-col>
         <el-col :span="10" class="input-component">
-          <el-input v-model="major"></el-input>
+          <el-input v-model="user_info.major"></el-input>
         </el-col>
       </el-row>
       <el-row class="input-line">
@@ -49,13 +49,37 @@
           性别：
         </el-col>
         <el-col :span="10" class="input-component>">
-          <el-radio v-model="gender" label="U">保密</el-radio>
-          <el-radio v-model="gender" label="M">男</el-radio>
-          <el-radio v-model="gender" label="F">女</el-radio>
+          <el-radio v-model="user_info.gender" label="U">保密</el-radio>
+          <el-radio v-model="user_info.gender" label="M">男</el-radio>
+          <el-radio v-model="user_info.gender" label="F">女</el-radio>
         </el-col>
       </el-row>
       <el-row class="input-line">
-        <el-button @click="submit">提交</el-button>
+        <el-col :span="8" class="input-label">
+          手机：
+        </el-col>
+        <el-col :span="10" class="input-component">
+          <el-input v-model="user_info.mobile_phone"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="input-line">
+        <el-col :span="8" class="input-label">
+          微信：
+        </el-col>
+        <el-col :span="10" class="input-component">
+          <el-input v-model="user_info.wechat"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="input-line">
+        <el-col :span="8" class="input-label">
+          QQ：
+        </el-col>
+        <el-col :span="10" class="input-component">
+          <el-input v-model="user_info.qq"></el-input>
+        </el-col>
+      </el-row>
+      <el-row class="input-line">
+        <el-button @click="submit" type="primary">提交</el-button>
       </el-row>
     </el-col>
   </el-row>
@@ -64,6 +88,7 @@
 <script>
 
   import APIS from '@/api/api'
+  import request from '@/api/request'
 
     export default {
       name: "AccountDetail",
@@ -89,33 +114,30 @@
 
           let vm = this
 
-          this.axios.post(APIS.CHANGE_ACCOUNT_DETAIL_URL, {
-            nickname: this.nickname,
-            gender: this.gender
-          }).then(response => {
-            alert("修改成功")
-            vm.axios.get(APIS.GET_ACCOUNT_DETAIL_URL).then(response => {
-              vm.$store.commit("update_user_info", response.data.data)
+          request(vm, 'post', APIS.CHANGE_ACCOUNT_DETAIL_URL, vm.user_info, true, response_data => {
+            const h = vm.$createElement
+            this.$notify({
+              title: '提示',
+              message: h('div', {style: 'color: teal'}, "修改成功")
+            })
+            request(vm, 'get', APIS.GET_ACCOUNT_DETAIL_URL, null, true, response_data => {
+              vm.$store.commit("update_user_info", response_data.data)
             })
           })
         }
       },
       data() {
         return {
-          icon_url: APIS.MEDIA_ROOT + this.$store.state.user_info.icon,
-          nickname: "",
-          gender: "",
-          student_id: "",
-          school: "",
-          major: "",
+          user_info: {}
+        }
+      },
+      computed: {
+        user_icon() {
+          return APIS.MEDIA_ROOT + this.user_info.icon
         }
       },
       mounted() {
-        this.nickname = this.$store.state.user_info.nickname
-        this.gender = this.$store.state.user_info.gender
-        this.student_id = this.$store.state.user_info.username
-        this.school = this.$store.state.user_info.school
-        this.major = this.$store.state.user_info.major
+        this.user_info = this.$store.state.user_info
       }
     }
 </script>
@@ -138,7 +160,7 @@
     height: 120px;
     width: 120px;
     object-fit: cover;
-    border-radius: 100px;
+    border-radius: 20px;
   }
 
   .input-line {

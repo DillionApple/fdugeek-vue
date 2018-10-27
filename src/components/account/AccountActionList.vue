@@ -9,6 +9,13 @@
           </router-link>
         </el-row>
         <el-row>
+          <router-link to="/account/password/">
+            <el-button>
+              <i class="el-icon-warning"></i> 修改密码
+            </el-button>
+          </router-link>
+        </el-row>
+        <el-row>
           <router-link to="/account/published-task/">
             <el-button>
               <i class="el-icon-date"></i> 我发布的任务

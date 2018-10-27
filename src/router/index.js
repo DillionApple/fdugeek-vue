@@ -11,6 +11,8 @@ import AccountMainLayout from '@/components/account/AccountMainLayout'
 import AccountDetail from '@/components/account/AccountDetail'
 import AppliedTaskList from '@/components/account/AppliedTaskList'
 import PublishedTaskList from '@/components/account/PublishedTaskList'
+import CommentList from '@/components/task/CommentList'
+import AccountPassword from '@/components/account/AccountPassword'
 
 Vue.use(Router)
 
@@ -22,6 +24,11 @@ export default new Router({
       component: Layout,
       redirect: '/main',
       children: [
+        {
+          path: 'test',
+          name: 'test',
+          component: CommentList
+        },
         {
           path: 'main',
           name: 'main',
@@ -40,6 +47,11 @@ export default new Router({
         {
           path: 'new-task',
           name: 'new-task',
+          component: NewTask
+        },
+        {
+          path: 'modify-task/:task_id',
+          name: 'modify-task',
           component: NewTask
         },
         {
@@ -62,7 +74,12 @@ export default new Router({
               path: 'detail',
               name: 'account-detail',
               component: AccountDetail
-            },{
+            }, {
+              path: 'password',
+              name: 'account-password',
+              component: AccountPassword
+            },
+            {
               path: 'applied-task',
               name: 'applied-task',
               component: AppliedTaskList,

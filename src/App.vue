@@ -35,6 +35,7 @@ body {
   margin: 0 0 0 0;
   font-size: 14px;
   font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Arial, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, sans-serif;
+  min-width: 1300px;
 }
 
 
@@ -47,6 +48,20 @@ body {
 
 .light-color {
   color: #727F8E;
+}
+
+.user-icon-small {
+  height: 25px;
+  width: 25px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.user-icon-medium {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 </style>

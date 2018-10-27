@@ -19,8 +19,8 @@ function request(context, method, url, data, login_redirect, closure) {
       const h = context.$createElement;
 
       context.$notify({
-        title: '标题名称',
-        message: h('e', {style: 'color: teal'}, '出错了，错误信息: ' + response.data.message)
+        title: '提示',
+        message: h('div', {style: 'color: teal'}, '错误信息: ' + response.data.message)
       })
     }
     closure(response.data)
