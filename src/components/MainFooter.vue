@@ -14,7 +14,7 @@
   .el-row {
     background-color: #1F2D3D;
     text-align: center;
-    line-height: 60px;
+    line-height: 40px;
     color: #FFFFFF;
   }
 </style>

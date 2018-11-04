@@ -1,29 +1,30 @@
 <template>
   <el-row class="task-list">
     <el-row :gutter="10" class="functional-line">
-      <el-col :span="5">
-        <el-select class="task-type-selector" v-model="selected_task_type" @change="update_task_list" placeholder="全部类型">
-          <el-option v-for="item in task_type_options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-      </el-col>
-      <el-col :span="5">
-        <el-select class="task-state-selector" v-model="selected_task_state" @change="update_task_list" placeholder="全部状态">
-          <el-option v-for="item in task_state_options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-      </el-col>
-      <el-col :span="10">
-        <el-input v-model="search_keyword" placeholder="搜索">
-          <el-button slot="append" icon="el-icon-search" @click="update_task_list"></el-button>
-        </el-input>
-      </el-col>
-      <el-col :span="4">
+      <el-col :span="6" :xs="24">
         <router-link to="/new-task">
           <el-button type="primary" class="new-task-button" icon="el-icon-circle-plus-outline">发布需求</el-button>
         </router-link>
       </el-col>
+      <el-col :span="6" :xs="12">
+        <el-select class="task-type-selector" v-model="selected_task_type" @change="update_task_list" placeholder="全部类型">
+          <el-option v-for="item in task_type_options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+      </el-col>
+      <el-col :span="6" :xs="12">
+        <el-select class="task-state-selector" v-model="selected_task_state" @change="update_task_list" placeholder="全部状态">
+          <el-option v-for="item in task_state_options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+      </el-col>
+      <el-col :span="6" :xs="24">
+        <el-input v-model="search_keyword" placeholder="搜索">
+          <el-button slot="append" icon="el-icon-search" @click="update_task_list"></el-button>
+        </el-input>
+      </el-col>
     </el-row>
     <el-row v-loading="loading_task_list" v-if="show_task_list">
       <task-list-element v-for="task in task_list" :key="task.id" :task="task"></task-list-element>
+      <el-row v-if="task_list.length == 0" class="light-color">列表为空</el-row>
     </el-row>
     <el-row class="paging-component">
       <el-pagination layout="prev, pager, next" :total="task_count" :page-size="20" :current-page.sync="current_page" @current-change="update_task_list"></el-pagination>
@@ -107,15 +108,20 @@
 </script>
 
 <style scoped>
-  .task-list-element {
-    margin-bottom: -1px;
-  }
 
   .new-task-button {
     width: 100%;
   }
 
-  .functional-line {
+  .task-type-selector {
+    width: 100%;
+  }
+
+  .task-state-selector {
+    width: 100%;
+  }
+
+  .functional-line .el-col {
     margin-bottom: 20px;
   }
 

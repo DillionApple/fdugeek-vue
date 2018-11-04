@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col :span="16" :offset="3">
+    <el-col :span="24">
       <el-row class="single-line-row">
         <el-col :span="6" class="input-label">
           标题：
@@ -21,7 +21,7 @@
       </el-row>
       <el-row class="single-line-row">
         <el-col :span="6" class="input-label">
-          报名截止日期：
+          报名截止：
         </el-col>
         <el-col :span="18" class="input-component">
           <el-date-picker :disabled="!editable" v-model="task.due_time" value-format="yyyy-MM-dd HH:mm"></el-date-picker>
@@ -124,6 +124,10 @@
       mounted() {
 
         let vm = this
+
+        if (! this.$store.state.logined) {
+          this.$router.push({name: 'login'})
+        }
 
         if (this.$route.params.task_id == null) {
           this.task.task_id = -1

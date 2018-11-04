@@ -1,9 +1,9 @@
 <template>
   <el-row class="account-main-layout">
-    <el-col :span="4" :offset="3" class="action-list">
-      <account-action-list class="card"></account-action-list>
+    <el-col :span="6" :xs="{span: 24}" class="card">
+      <action-menu></action-menu>
     </el-col>
-    <el-col :span="14" :offset="1">
+    <el-col :span="17" :offset="1" :xs="{span: 24, offset: 0}">
       <router-view class="card"></router-view>
     </el-col>
   </el-row>
@@ -11,15 +11,25 @@
 
 <script>
 
-  import AccountActionList from '@/components/account/AccountActionList'
+  import ActionMenu from "@/components/ActionMenu";
   import AccountDetail from "@/components/account/AccountDetail";
 
     export default {
       name: "AccountMainLayout",
-      components: {AccountActionList, AccountDetail}
+      components: {ActionMenu, AccountDetail}
     }
 </script>
 
 <style scoped>
+
+  .account-action-list {
+    margin-bottom: 20px;
+    padding: 0px;
+  }
+
+  .card {
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 20px;
+  }
 
 </style>

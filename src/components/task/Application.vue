@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col :span="16" :offset="3">
+    <el-col :span="24">
       <el-row class="line">
         <el-col :span="6" class="input-label">
           报名理由：
@@ -20,7 +20,7 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="18" :offset="6" class="line">
+        <el-col :span="18" :offset="6" class="line light-color">
           <span>1. 你的信息(学号、姓名、报名理由等)将会公开给需求创建者，但不会公开给其他任何人</span>
           <br>
           <span>2. 为了方便对方与你快速取得联系，建议留下自己的联系方式，如微信、手机号等</span>
@@ -97,7 +97,7 @@
 
   .input-label {
     text-align: right;
-    font-size: 18px;
+    font-size: 15px;
     color: #727F8E;
   }
 

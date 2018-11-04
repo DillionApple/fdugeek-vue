@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/components/Layout'
-import Login from '@/components/Login'
+import Login from '@/components/account/Login'
+import Register from '@/components/account/Register'
 import NewTask from '@/components/task/NewTask'
 import TaskDetail from '@/components/task/TaskDetail'
 import Application from '@/components/task/Application'
@@ -13,6 +14,7 @@ import AppliedTaskList from '@/components/account/AppliedTaskList'
 import PublishedTaskList from '@/components/account/PublishedTaskList'
 import CommentList from '@/components/task/CommentList'
 import AccountPassword from '@/components/account/AccountPassword'
+import RegisterStatus from '@/components/account/RegisterStatus'
 
 Vue.use(Router)
 
@@ -40,11 +42,6 @@ export default new Router({
           component: TaskMainLayout,
         },
         {
-          path: 'login',
-          name: 'login',
-          component: Login
-        },
-        {
           path: 'new-task',
           name: 'new-task',
           component: NewTask
@@ -63,6 +60,21 @@ export default new Router({
           path: 'application/:task_id',
           name: 'application',
           component: Application
+        },
+        {
+          path: 'login',
+          name: 'login',
+          component: Login
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: Register
+        },
+        {
+          path: 'register_status/:register_status',
+          name: 'register_status',
+          component: RegisterStatus
         },
         {
           path: 'account',

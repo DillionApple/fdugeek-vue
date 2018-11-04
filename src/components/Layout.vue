@@ -4,9 +4,16 @@
       <main-header></main-header>
     </el-header>
     <el-main>
-      <router-view></router-view>
+      <el-row>
+        <el-col :span="24" v-if="this.$route.name == 'main'">
+          <router-view></router-view>
+        </el-col>
+        <el-col :span="18" :offset="3" :xs="{span: 24, offset: 0}" v-else>
+          <router-view></router-view>
+        </el-col>
+      </el-row>
     </el-main>
-    <el-footer>
+    <el-footer style="height: 40px;">
       <main-footer></main-footer>
     </el-footer>
   </el-container>
@@ -24,6 +31,7 @@
 </script>
 
 <style scoped>
+
   .el-header {
     padding-left: 0;
     padding-right: 0;
@@ -34,9 +42,9 @@
 
   .el-main {
     margin-top: 60px;
+    margin-bottom: 40px;
     z-index: 0;
     background-color: #F0F2F5;
-    min-height: 700px;
   }
 
   .el-footer {
@@ -45,5 +53,17 @@
     width: 100%;
     bottom: 0;
     z-index: 1;
+    position: fixed;
+  }
+
+  @media screen and (max-width: 767px) {
+    .el-footer {
+      display: none;
+    }
+    .el-main {
+      margin-bottom: 0px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
 </style>

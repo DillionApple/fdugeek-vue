@@ -3,6 +3,9 @@
     <el-row>
       <task-list-element v-for="application in applications" :key="application.task.id" :task="application.task" ></task-list-element>
     </el-row>
+    <el-row v-if="applications.length == 0" class="light-color">
+      还没有申请的任务，查看<router-link to="/task-list/">需求列表</router-link>
+    </el-row>
   </el-row>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col :span="16" :offset="4" :xs="{span: 24, offset:0}">
+    <el-col :span="24">
       <task-list class="card"></task-list>
     </el-col>
   </el-row>

@@ -16,15 +16,15 @@
       </el-row>
       <el-row class="extra">
         <el-col :span="24" class="task-detail-line">
-          <span class="task-detail-item">
+          <div class="task-detail-item">
             <span class="light-color">类型：</span><span><el-tag size="small">{{ task_type }}</el-tag></span>
-          </span>
-          <span class="task-detail-item">
+          </div>
+          <div class="task-detail-item">
             <span class="light-color">报名人数：</span><span>{{ task. application_count }}</span>
-          </span>
-          <span class="task-detail-item">
+          </div>
+          <div class="task-detail-item">
             <span class="light-color">报名截止：</span><span>{{ task.due_time}}</span>
-          </span>
+          </div>
         </el-col>
       </el-row>
     </el-row>
@@ -57,17 +57,27 @@
 </script>
 
 <style scoped>
+
   .root {
     text-align: left;
     border-top: solid 1px #F0F2F5;
     border-bottom: solid 1px #F0F2F5;
     border-radius: 0;
     padding: 10px;
+    margin-bottom: -1px;
   }
 
   .root:hover {
     background-color: #F9FAFC;
   }
+
+  @media screen and (max-width: 767px) {
+    .root {
+      border-top: solid 1px #C0C2C5;
+      border-bottom: solid 1px #C0C2C5;
+    }
+  }
+
 
   .header {
     line-height: 40px;
@@ -103,6 +113,11 @@
   .task-link {
     text-decoration: none;
     color: #000000;
+  }
+
+  .task-detail-line {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .task-detail-line .task-detail-item {

@@ -35,7 +35,6 @@ body {
   margin: 0 0 0 0;
   font-size: 14px;
   font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Arial, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, sans-serif;
-  min-width: 1300px;
 }
 
 
@@ -45,6 +44,14 @@ body {
   border-radius: 3px;
   box-shadow: 0px 3px 10px #DDDDDD;
 }
+
+
+@media screen and (max-width: 767px) {
+  .card {
+    padding: 10px 10px 10px 10px;
+  }
+}
+
 
 .light-color {
   color: #727F8E;

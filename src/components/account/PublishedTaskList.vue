@@ -3,6 +3,9 @@
     <el-row>
       <task-list-element v-for="task in tasks" :key="task.id" :task="task"></task-list-element>
     </el-row>
+    <el-row v-if="tasks.length == 0" class="light-color">
+      还没有创建的任务，快去<router-link to="/new-task/">发布需求</router-link>吧！
+    </el-row>
   </el-row>
 </template>
 

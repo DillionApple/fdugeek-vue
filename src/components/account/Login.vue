@@ -1,7 +1,7 @@
 <template>
   <el-row>
-    <p>无需注册，<b>复旦邮箱</b>登录</p>
-    <el-col :span="12" :offset="6" :xs="{span: 24, offset: 0}" :lg="{span:6, offset: 9}">
+    <p>请登录</p>
+    <el-col :span="12" :offset="6" :xs="{span: 24, offset: 0}">
       <el-row class="line">
         <el-col>
           <el-input v-model="username" placeholder="学号/工号">
@@ -11,7 +11,7 @@
       </el-row>
       <el-row class="line">
         <el-col>
-          <el-input v-model="password" type="password" placeholder="邮箱密码"></el-input>
+          <el-input v-model="password" type="password" placeholder="密码"></el-input>
         </el-col>
       </el-row>
       <el-row class="line">
@@ -21,7 +21,7 @@
       </el-row>
       <el-row class="line">
         <el-col :span="24">
-          <span class="light-color">您的邮箱账号、密码将只用于第一次登录时进行邮箱验证，我们不会保存您的密码。之后您可以随意更改您的密码。</span>
+          <span class="light-color">还没有账号？<router-link :to="{name: 'register'}">立即注册</router-link></span>
         </el-col>
       </el-row>
     </el-col>

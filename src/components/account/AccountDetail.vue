@@ -2,10 +2,10 @@
   <el-row class="account">
     <el-col :span="24">
       <el-row class="user-icon-line" :gutter="50">
-        <el-col :span="12" class="user-icon-col">
+        <el-col :span="13" class="user-icon-col">
           <img :src="user_icon" class="user-icon">
         </el-col>
-        <el-col :span="12" class="change-user-icon-btn-col">
+        <el-col :span="11" class="change-user-icon-btn-col">
           <label for="file-upload" class="custom-file-upload">
             修改头像
           </label>
@@ -178,6 +178,12 @@
 
   #file-upload {
     display: none;
+  }
+
+  .custom-file-upload {
+    border: solid 1px #C0C2C6;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
   }
 
 

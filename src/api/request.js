@@ -8,6 +8,7 @@ Vue.use(VueAxios, axios)
 
 function request(context, method, url, data, login_redirect, closure) {
   let req;
+  context.axios.defaults.withCredentials = true
   if (method == "get") {
     req = context.axios.get(url, {params: data});
   } else if (method == "post") {

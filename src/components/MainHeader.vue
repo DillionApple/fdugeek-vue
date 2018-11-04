@@ -1,58 +1,31 @@
 <template>
   <el-row :gutter="20" class="root">
-    <el-col :span="11" :offset="1" class="logo">
+    <el-col :span="13" :offset="1" class="logo">
+      <el-button class="backword-button" @click="route_backward" size="small">
+        <el-icon class="el-icon-arrow-left"></el-icon>返回
+      </el-button>
       <router-link :to="logo_redirect_url">
         <span class="logo">FDU GEEK</span>
       </router-link>
     </el-col>
-    <el-col :span="11" class="function-buttons">
+    <el-col :span="10" class="function-buttons">
       <div v-if="$store.state.logined">
         <el-popover
           placement="bottom"
           width="100"
           trigger="hover">
-          <el-row>
-            <el-row class="account-popover-link">
-              <router-link to="/new-task/">
-                <el-button>
-                  <i class="el-icon-circle-plus-outline"></i> 发布需求
-                </el-button>
-              </router-link>
-            </el-row>
-            <el-row class="account-popover-link">
-              <router-link to="/account/detail">
-                <el-button>
-                  <i class="el-icon-edit-outline"></i> 用户信息
-                </el-button>
-              </router-link>
-            </el-row>
-            <el-row class="account-popover-link">
-              <router-link to="/account/published-task/">
-                <el-button>
-                  <i class="el-icon-date"></i> 我发布的任务
-                </el-button>
-              </router-link>
-            </el-row>
-            <el-row class="account-popover-link">
-              <router-link to="/account/applied-task/">
-                <el-button>
-                  <i class="el-icon-document"></i> 我报名的任务
-                </el-button>
-              </router-link>
-            </el-row>
-          </el-row>
+          <action-menu></action-menu>
           <el-button slot="reference" class="nickname_button">{{ this.$store.state.user_info.nickname }} ▼ </el-button>
         </el-popover>
-        <el-button type="primary" @click="do_logout">登出</el-button>
       </div>
       <div v-else>
-        <router-link to="/login">
-          <el-button type="primary">
+        <router-link :to="{name: 'login'}">
+          <el-button type="primary" size="small">
             登录
           </el-button>
         </router-link>
-        <router-link to="/login">
-          <el-button type="success">
+        <router-link :to="{name: 'register'}">
+          <el-button type="success" size="small">
             注册
           </el-button>
         </router-link>
@@ -64,20 +37,19 @@
 <script>
 
   import APIS from "@/api/api"
+  import ActionMenu from "@/components/ActionMenu"
 
     export default {
       name: "MainHeader",
-      methods: {
-        do_logout () {
-          this.axios.get(APIS.LOGOUT_URL).then(response => {
-            this.$store.commit("logout")
-            this.$router.push({name: "main"})
-          })
-        }
-      },
+      components: {ActionMenu},
       data() {
         return {
           media_root: APIS.MEDIA_ROOT
+        }
+      },
+      methods: {
+        route_backward() {
+          this.$router.back();
         }
       },
       computed: {
@@ -107,10 +79,16 @@
 
   .logo {
     line-height: 60px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bolder;
     color: #000;
     text-align: left;
+  }
+
+  @media screen and (max-width: 767px) {
+    .logo {
+      font-size: 16px;
+    }
   }
 
   .logo a {
@@ -149,6 +127,11 @@
     width: 30px;
     top: 10px;
     position: relative;
+  }
+
+  .backword-button {
+    padding: 5px;
+    font-size: 16px;
   }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <el-row>
+    <el-row class="account-action-list">
       <el-col :span="24">
         <el-row>
           <router-link to="/account/detail/">

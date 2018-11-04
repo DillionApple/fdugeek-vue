@@ -1,6 +1,6 @@
 <template>
   <el-row class="task-detail">
-    <el-col :span="16" :offset="4">
+    <el-col :span="24">
       <el-row class="card user-application-info" v-if="user_applied">
         <h3><el-tag>已报名</el-tag></h3>
         <h3>报名时间</h3>
@@ -263,7 +263,7 @@
 
   .task-detail-publisher-line {
     text-align: left;
-    margin-bottom: 20px;
+    line-height: 40px;
   }
 
   .user-icon-small {
@@ -272,7 +272,9 @@
   }
 
   .task-detail-info-line {
-    text-align: left;
+    line-height: 40px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .task-detail-item {

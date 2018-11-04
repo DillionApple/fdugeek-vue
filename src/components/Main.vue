@@ -2,20 +2,20 @@
   <el-row class="main">
     <el-col :span="24" class="main-content">
       <el-row>
-        <el-col :span="24" class="slogan-big">
+        <el-col :span="22" :offset="1" class="slogan-big">
           <span>复旦校园软件服务外包平台</span>
         </el-col>
-        <el-col :span="24" class="slogan-small">
+        <el-col :span="22" :offset="1" class="slogan-small">
           <span>CS + Everything</span>
         </el-col>
         <el-col :span="24" class="buttons">
           <el-row :gutter="30">
-            <el-col :span="4" :offset="8">
+            <el-col :span="24">
               <router-link to="/new-task/">
                 <el-button class="publish-btn">发布需求</el-button>
               </router-link>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="24">
               <router-link to="/task-list/">
                 <el-button class="list-btn">项目列表</el-button>
               </router-link>
@@ -36,13 +36,19 @@
 <style scoped>
 
   .slogan-big {
-    font-size: 40px;
+    font-size: 20px;
     margin-top: 150px;
     color: white;
   }
 
+  @media screen and (min-width: 768px) {
+    .slogan-big {
+      font-size: 40px;
+    }
+  }
+
   .slogan-small {
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 30px;
     color: white;
   }
@@ -55,6 +61,7 @@
     width: 200px;
     font-size: 18px;
     color: white;
+    margin-bottom: 20px;
   }
 
   .publish-btn {
@@ -66,10 +73,11 @@
   }
 
   .main {
-    background-image: url("https://dn-coding-net-production-pp.codehub.cn/87230519-0f4a-4524-b9ef-aead33b0ca28.jpg");
-    background-size: 100% 100%;
+    background: url("https://dn-coding-net-production-pp.codehub.cn/87230519-0f4a-4524-b9ef-aead33b0ca28.jpg") no-repeat center center fixed;
+    background-size: cover;
     min-height: 700px;
     background-color: #FFFFFF;
+
   }
 
   .main-content {
