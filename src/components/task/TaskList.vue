@@ -43,6 +43,7 @@
     components: {TaskListElement},
     data() {
       return {
+        loading: false,
         selected_task_type: "all",
         selected_task_state: "all",
         search_keyword: "",

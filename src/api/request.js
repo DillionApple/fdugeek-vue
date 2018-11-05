@@ -9,6 +9,7 @@ Vue.use(VueAxios, axios)
 function request(context, method, url, data, login_redirect, closure) {
   let req;
   context.axios.defaults.withCredentials = true
+  context.loading = true
   if (method == "get") {
     req = context.axios.get(url, {params: data});
   } else if (method == "post") {
@@ -21,14 +22,30 @@ function request(context, method, url, data, login_redirect, closure) {
 
       context.$notify({
         title: '提示',
-        message: h('div', {style: 'color: teal'}, '错误信息: ' + response.data.message)
+        message: h('div', {style: 'color: red'}, '错误信息: ' + response.data.message)
+      })
+    } else if (response.data.err_code == 0 && method == 'post') {
+
+      const h = context.$createElement;
+
+      context.$notify({
+        title: '提示',
+        message: h('div', {style: 'color: teal'}, '提交成功')
       })
     }
     closure(response.data)
+    context.loading = false
   }, response => {
+    context.loading = false
     if (response.response.data.message == "Login Required" && login_redirect) {
       context.$router.push({name: 'login'})
+      return
     }
+    const h = context.$createElement;
+    context.$notify({
+      title: '提示',
+      message: h('div', {style: 'color: red'}, "服务器错误")
+    })
   })
 }
 

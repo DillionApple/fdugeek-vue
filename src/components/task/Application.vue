@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row v-loading="loading">
     <el-col :span="24">
       <el-row class="line">
         <el-col :span="6" class="input-label">
@@ -39,6 +39,7 @@
       name: "Application",
       data() {
         return {
+          loading: false,
           application_text: ""
         }
       },
@@ -53,18 +54,6 @@
           }
 
           request(vm, 'post', APIS.APPLY_FOR_TASK_URL, post_data, true, response_data => {
-            const h = vm.$createElement
-            if (response_data.err_code == 0) {
-              vm.$notify({
-                title: '提示',
-                message: h('div', {style: 'color: teal'}, "申请成功")
-              })
-            } else {
-              vm.notify({
-                title: '提示',
-                message: h('div', {style: 'color: teal'}, response_data.message)
-              })
-            }
             history.go(-1)
           })
 

@@ -1,5 +1,5 @@
 <template>
-  <el-row class="task-detail">
+  <el-row class="task-detail" v-loading="loading">
     <el-col :span="24">
       <el-row class="card user-application-info" v-if="user_applied">
         <h3><el-tag>已报名</el-tag></h3>
@@ -113,6 +113,7 @@
       components: {TaskStateTag, CommentList},
       data() {
         return {
+          loading: false,
           task: {
             creator: {}
           },
@@ -144,11 +145,6 @@
             type: 'warning',
           }).then(() => {
             request(vm, 'post', APIS.QUIT_TASK, {task_id: this.task.task_id}, true, response_data => {
-              const h = vm.$createElement;
-              vm.$notify({
-                title: "提示",
-                message: h('div', {style: 'color: teal'}, "退出成功"),
-              })
               location.reload(true)
             })
           }).catch(() => {
@@ -178,11 +174,6 @@
 
           request(vm, 'post', APIS.MAKE_COMMENT, post_data, true, response_data => {
             if (response_data.err_code == 0) {
-              const h = vm.$createElement;
-              vm.$notify({
-                title: '提示',
-                message: h('div', {style: 'color: teal'}, "评论成功")
-              })
               vm.comment = ""
               vm.show_comments = false
 
@@ -193,7 +184,7 @@
           })
         },
         modify_task() {
-          this.$router.push("/modify-task/" + this.task.task_id)
+          this.$router.push({name: 'modify-task', params: {task_id: this.task.task_id}})
         },
         finish_task() {
           let vm = this

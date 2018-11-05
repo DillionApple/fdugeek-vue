@@ -1,5 +1,5 @@
 <template>
-  <el-row class="account-password">
+  <el-row class="account-password" v-loading="loading">
     <el-row class="input-line">
       <el-col :span="8" class="input-label">
         旧密码：
@@ -39,6 +39,7 @@
       name: "ChangePassword",
       data() {
         return {
+          loading: false,
           old_password: "",
           new_password: "",
           repeat_new_password: ""
@@ -48,7 +49,11 @@
         submit() {
           let vm = this;
           if (vm.new_password != vm.repeat_new_password) {
-            alert("两次密码不一致")
+            const h = vm.$createElement
+            vm.$notify({
+              title: '提示',
+              message: h('div', {style: 'color: red'}, '两次密码不一致')
+            })
             return
           }
           let post_data = {
@@ -56,10 +61,6 @@
             new_password: vm.new_password
           }
           request(vm, 'post', APIS.CHANGE_PASSWORD_URL, post_data, true, response_data => {
-            if (response_data.err_code == 0) {
-              alert("修改成功")
-              vm.$router.push({name: 'account'})
-            }
           })
         }
       }

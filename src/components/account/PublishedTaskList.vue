@@ -1,5 +1,5 @@
 <template>
-  <el-row class="published-task-list">
+  <el-row class="published-task-list" v-loading="loading">
     <el-row>
       <task-list-element v-for="task in tasks" :key="task.id" :task="task"></task-list-element>
     </el-row>
@@ -20,6 +20,7 @@
       components: {TaskListElement},
       data() {
         return {
+          loading: false,
           tasks: []
         }
       },

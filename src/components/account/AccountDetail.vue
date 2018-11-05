@@ -1,5 +1,5 @@
 <template>
-  <el-row class="account">
+  <el-row class="account" v-loading="loading">
     <el-col :span="24">
       <el-row class="user-icon-line" :gutter="50">
         <el-col :span="13" class="user-icon-col">
@@ -103,11 +103,10 @@
             reader.readAsDataURL(file);
             let form_data=new window.FormData();
             form_data.append('picture',file);
-            this.axios.post(APIS.CHANGE_ACCOUNT_ICON_URL, form_data).then(response => {
-              vm.$store.commit("update_user_icon_url", response.data.data.icon)
-              vm.icon_url = APIS.MEDIA_ROOT + response.data.data.icon
-              alert("修改成功")
-            });
+            request(vm, 'post', APIS.CHANGE_ACCOUNT_ICON_URL, form_data, true, response_data => {
+              vm.$store.commit("update_user_icon_url", response_data.data.icon)
+              vm.icon_url = APIS.MEDIA_ROOT + response_data.data.icon
+            })
           }
         },
         submit() {
@@ -115,11 +114,6 @@
           let vm = this
 
           request(vm, 'post', APIS.CHANGE_ACCOUNT_DETAIL_URL, vm.user_info, true, response_data => {
-            const h = vm.$createElement
-            this.$notify({
-              title: '提示',
-              message: h('div', {style: 'color: teal'}, "修改成功")
-            })
             request(vm, 'get', APIS.GET_ACCOUNT_DETAIL_URL, null, true, response_data => {
               vm.$store.commit("update_user_info", response_data.data)
             })
@@ -128,6 +122,7 @@
       },
       data() {
         return {
+          loading: false,
           user_info: {}
         }
       },

@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row v-loading="loading">
     <p>请登录</p>
     <el-col :span="12" :offset="6" :xs="{span: 24, offset: 0}">
       <el-row class="line">
@@ -37,6 +37,7 @@
       name: "Login",
       data() {
         return {
+          loading: false,
           username: "",
           password: ""
         }

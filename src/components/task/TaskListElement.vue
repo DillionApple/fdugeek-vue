@@ -9,7 +9,7 @@
     <el-row class="main">
       <el-row class="title">
         <el-col :span="24">
-          <router-link :to="'/task-detail/' + task.task_id" class="task-link">
+          <router-link :to="{name: 'task-detail', params: {task_id: task.task_id}}" class="task-link">
             NO.{{ task.task_id }} {{ task.title }}
           </router-link>
         </el-col>

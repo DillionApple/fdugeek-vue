@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col :span="24">
+    <el-col :span="24" v-loading="loading">
       <el-row class="single-line-row">
         <el-col :span="6" class="input-label">
           标题：
@@ -72,6 +72,7 @@
       name: "NewTask",
       data() {
         return {
+          loading: false,
           task: {},
           task_type_options: [
             {
@@ -102,20 +103,10 @@
 
           if (vm.task.task_id != -1) {
             request(vm, 'post', APIS.MODIFY_TASK_URL, vm.task, true, response_data => {
-              const h = vm.$createElement
-              vm.$notify({
-                title: "提示",
-                message: h('div', {style: 'color: teal'}, "修改成功")
-              })
               vm.$router.push({name: 'task-list'})
             })
           } else {
             request(vm, 'post', APIS.CREATE_NEW_TASK_URL, vm.task, true, response_data => {
-              const h = vm.$createElement
-              vm.$notify({
-                title: '提示',
-                message: h('div', {style: 'color: teal'}, "发布成功")
-              })
               vm.$router.push({name: 'task-list'})
             })
           }

@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row v-loading="loading">
     <el-row v-if="!register_success">
       <p>请注册</p>
       <el-col :span="12" :offset="6" :xs="{span: 24, offset: 0}">
@@ -40,6 +40,7 @@
       name: "Register",
       data() {
         return {
+          loading: false,
           username: "",
           password1: "",
           password2: "",
@@ -54,7 +55,7 @@
             const h = vm.$createElement
             vm.$notify({
               title: "提示",
-              message: h('div', {style: 'color: teal'}, "两次密码不一致")
+              message: h('div', {style: 'color: red'}, "两次密码不一致")
             })
             return
           }

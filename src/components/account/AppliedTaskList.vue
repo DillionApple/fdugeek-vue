@@ -1,5 +1,5 @@
 <template>
-  <el-row class="applied-task-list">
+  <el-row class="applied-task-list" v-loading="loading">
     <el-row>
       <task-list-element v-for="application in applications" :key="application.task.id" :task="application.task" ></task-list-element>
     </el-row>
@@ -20,6 +20,7 @@
       components: {TaskListElement},
       data() {
         return {
+          loading: false,
           applications: []
         }
       },
