@@ -14,7 +14,7 @@ import AppliedTaskList from '@/components/account/AppliedTaskList'
 import PublishedTaskList from '@/components/account/PublishedTaskList'
 import CommentList from '@/components/task/CommentList'
 import AccountPassword from '@/components/account/AccountPassword'
-import RegisterStatus from '@/components/account/RegisterStatus'
+import ConfirmRegister from '@/components/account/ConfirmRegister'
 
 Vue.use(Router)
 
@@ -29,7 +29,7 @@ export default new Router({
         {
           path: 'test',
           name: 'test',
-          component: CommentList
+          component: ConfirmRegister
         },
         {
           path: 'main',
@@ -72,9 +72,9 @@ export default new Router({
           component: Register
         },
         {
-          path: 'register_status/:register_status',
-          name: 'register_status',
-          component: RegisterStatus
+          path: 'confirm_register/:username/:confirm_code',
+          name: 'confirm_register',
+          component: ConfirmRegister
         },
         {
           path: 'account',

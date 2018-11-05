@@ -13,6 +13,7 @@ var APIS = {
   GET_TASK_APPLICATIONS_URL: ROOT_URL + "/task/applications/",
   LOGIN_URL: ROOT_URL + "/account/login/",
   REGISTER_URL: ROOT_URL + "/account/register/",
+  CONFIRM_REGISTER_URL: ROOT_URL + "/account/confirm_register/",
   LOGOUT_URL: ROOT_URL + "/account/logout/",
   GET_ACCOUNT_DETAIL_URL: ROOT_URL + "/account/detail/",
   UPLOAD_PICTURE_URL: ROOT_URL + "/picture_bed/upload/",
