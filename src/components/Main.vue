@@ -3,10 +3,10 @@
     <el-col :span="24" class="main-content">
       <el-row>
         <el-col :span="22" :offset="1" class="slogan-big">
-          <span>复旦校园软件服务外包平台</span>
+          <span>复旦极客网</span>
         </el-col>
         <el-col :span="22" :offset="1" class="slogan-small">
-          <span>CS + Everything</span>
+          <span>用信息技术连接智慧校园</span>
         </el-col>
         <el-col :span="24" class="buttons">
           <el-row :gutter="30">

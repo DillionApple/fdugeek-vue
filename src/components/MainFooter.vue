@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20" class="root">
-    <el-col :span="24">CS Plus Copyright © 2018</el-col>
+    <el-col :span="24">FDU GEEK Copyright © 2018</el-col>
   </el-row>
 </template>
 
