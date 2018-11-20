@@ -14,7 +14,9 @@
           <h1>{{ this.task.title }}</h1>
         </el-col>
         <el-col :span="24" class="task-detail-publisher-line">
-          <span class="light-color"><img :src="creator_icon_url" class="user-icon-small"> {{ task.creator.nickname }} 于 {{ task.create_time }} 发布</span>
+          <span class="light-color"><img :src="creator_icon_url" class="user-icon-small"> {{ task.creator.nickname }}
+            <img src="/static/male.png" v-if="task.creator.gender=='M'" class="sex-icon">
+            <img src="/static/female.png" v-if="task.creator.gender=='F'" class="sex-icon">于 {{ task.create_time }} 发布</span>
           <task-state-tag :task_state="task.state"></task-state-tag>
         </el-col>
         <el-col :span="24" class="task-detail-info-line">
@@ -77,6 +79,13 @@
                 <el-table-column prop="applicant.username" label="学号" width="110">
                 </el-table-column>
                 <el-table-column prop="applicant.nickname" label="姓名" width="90">
+                </el-table-column>
+                <el-table-column label="性别" width="50">
+                  <template slot-scope="scope">
+                    <span v-if="scope.row.applicant.gender=='M'">男</span>
+                    <span v-if="scope.row.applicant.gender=='F'">女</span>
+                    <span v-if="scope.row.applicant.gender=='U'">未知</span>
+                  </template>
                 </el-table-column>
                 <el-table-column prop="applicant.school" label="学院" width="120">
                 </el-table-column>
@@ -231,6 +240,12 @@
 </script>
 
 <style scoped>
+
+  .sex-icon {
+    position: relative;
+    width: 15px;
+    top: 3px;
+  }
 
   .user-application-info {
     text-align: left;

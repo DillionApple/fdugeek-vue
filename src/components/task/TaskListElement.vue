@@ -2,7 +2,9 @@
   <div class="root task-list-element">
     <el-row class="header">
       <el-col :span="24">
-        <img :src="user_icon_url" class="user-icon-small"> {{ task.creator.nickname }} | {{ task.create_time }} 发布
+        <img :src="user_icon_url" class="user-icon-small"> {{ task.creator.nickname }}
+        <img src="/static/male.png" class="sex-icon" v-if="task.creator.gender=='M'">
+        <img src="/static/female.png" class="sex-icon" v-if="task.creator.gender=='F'"> | {{ task.create_time }} 发布
         <task-state-tag :task_state="task.state"></task-state-tag>
       </el-col>
     </el-row>
@@ -108,6 +110,12 @@
   .user-icon-small {
     position: relative;
     top: 7px;
+  }
+
+  .sex-icon {
+    position: relative;
+    width: 15px;
+    top: 2px;
   }
 
   .task-link {
