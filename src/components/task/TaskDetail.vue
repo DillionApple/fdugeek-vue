@@ -84,7 +84,7 @@
                   <template slot-scope="scope">
                     <span v-if="scope.row.applicant.gender=='M'">男</span>
                     <span v-if="scope.row.applicant.gender=='F'">女</span>
-                    <span v-if="scope.row.applicant.gender=='U'">未知</span>
+                    <span v-if="scope.row.applicant.gender=='U'">保密</span>
                   </template>
                 </el-table-column>
                 <el-table-column prop="applicant.school" label="学院" width="120">
