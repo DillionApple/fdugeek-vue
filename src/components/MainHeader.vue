@@ -1,18 +1,14 @@
 <template>
   <el-row :gutter="20" class="root">
-    <el-col :span="13" :offset="1" class="logo">
-      <el-row>
-        <el-col :span="6" class="hidden-sm-and-up">
-          <el-button class="backword-button" @click="route_backward" size="small">
-            <el-icon class="el-icon-arrow-left"></el-icon>返回
-          </el-button>
-        </el-col>
-        <el-col :span="18">
-          <router-link :to="logo_redirect_url">
-            <span class="logo">FDU GEEK</span>
-          </router-link>
-        </el-col>
-      </el-row>
+    <el-col :span="13" :offset="1" class="logo-part">
+      <el-button class="backword-button hidden-sm-and-up" @click="route_backward">
+        <el-icon class="el-icon-arrow-left"></el-icon>返回
+      </el-button>
+      <span class="logo">
+        <router-link :to="logo_redirect_url">
+          FDU GEEK
+        </router-link>
+      </span>
     </el-col>
     <el-col :span="10" class="function-buttons">
       <div v-if="$store.state.logined">
@@ -82,22 +78,22 @@
     box-shadow: 0px 3px 5px #EEEEEE;
   }
 
-  .logo {
+  .logo-part {
     line-height: 60px;
-    font-size: 20px;
-    font-weight: bolder;
-    color: #000;
     text-align: left;
-  }
-
-  @media screen and (max-width: 767px) {
-    .logo {
-      font-size: 16px;
-    }
   }
 
   .logo a {
     text-decoration: none;
+    font-weight: bolder;
+    color: #000;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .logo a {
+      font-size: 16px;
+    }
   }
 
   .function-buttons {
