@@ -52,10 +52,19 @@
       name: "ActionMenu",
       methods: {
         do_logout () {
+
           let vm = this
-          request(vm, 'get', APIS.LOGOUT_URL, null, true, response_data => {
-            this.$store.commit("logout")
-            this.$router.push({name: "main"})
+
+          vm.$confirm('确认要注销么？', '提示', {
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            type: 'warning',
+          }).then(() => {
+            request(vm, 'get', APIS.LOGOUT_URL, null, true, response_data => {
+              this.$store.commit("logout")
+              this.$router.push({name: "main"})
+            })
+          }).catch(() => {
           })
         }
       },

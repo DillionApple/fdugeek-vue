@@ -4,7 +4,7 @@
       <el-col :span="24">
         <img :src="user_icon_url" class="user-icon-small"> {{ task.creator.nickname }}
         <img src="/static/male.png" class="sex-icon" v-if="task.creator.gender=='M'">
-        <img src="/static/female.png" class="sex-icon" v-if="task.creator.gender=='F'"> | {{ task.create_time }} 发布
+        <img src="/static/female.png" class="sex-icon" v-if="task.creator.gender=='F'"> | <timeago :datetime="task.create_time"></timeago> 发布
         <task-state-tag :task_state="task.state"></task-state-tag>
       </el-col>
     </el-row>
@@ -25,7 +25,7 @@
             <span class="light-color">报名人数：</span><span>{{ task. application_count }}</span>
           </div>
           <div class="task-detail-item">
-            <span class="light-color">报名截止：</span><span>{{ task.due_time}}</span>
+            <span class="light-color">报名截止：</span><span><timeago :datetime="task.due_time"></timeago></span>
           </div>
         </el-col>
       </el-row>

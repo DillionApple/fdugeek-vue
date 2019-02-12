@@ -1,6 +1,11 @@
 <template>
   <el-row :gutter="20" class="root">
-    <el-col :span="24">FDU GEEK Copyright © 2018</el-col>
+    <el-col :span="12" :offset="6">FDU GEEK Copyright © 2018-2019</el-col>
+    <el-col :span="6" align="right">
+      <router-link to="/feedback/" class="footer-link">
+        <span>用户反馈</span>
+      </router-link>
+    </el-col>
   </el-row>
 </template>
 
@@ -17,4 +22,10 @@
     line-height: 40px;
     color: #FFFFFF;
   }
+
+  .footer-link {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+
 </style>

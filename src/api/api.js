@@ -4,6 +4,7 @@ let ROOT_URL = "http://" + HOST
 
 var APIS = {
   MEDIA_ROOT: ROOT_URL,
+  FEEDBACK_URL: ROOT_URL + "/feedback/",
   GET_TASK_LIST_URL: ROOT_URL + "/task/list/",
   CREATE_NEW_TASK_URL: ROOT_URL + "/task/new/",
   MODIFY_TASK_URL: ROOT_URL + "/task/change/",

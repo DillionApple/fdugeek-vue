@@ -1,12 +1,18 @@
 <template>
   <el-row :gutter="20" class="root">
     <el-col :span="13" :offset="1" class="logo">
-      <el-button class="backword-button" @click="route_backward" size="small">
-        <el-icon class="el-icon-arrow-left"></el-icon>返回
-      </el-button>
-      <router-link :to="logo_redirect_url">
-        <span class="logo">FDU GEEK</span>
-      </router-link>
+      <el-row>
+        <el-col :span="6" class="hidden-sm-and-up">
+          <el-button class="backword-button" @click="route_backward" size="small">
+            <el-icon class="el-icon-arrow-left"></el-icon>返回
+          </el-button>
+        </el-col>
+        <el-col :span="18">
+          <router-link :to="logo_redirect_url">
+            <span class="logo">FDU GEEK</span>
+          </router-link>
+        </el-col>
+      </el-row>
     </el-col>
     <el-col :span="10" class="function-buttons">
       <div v-if="$store.state.logined">
@@ -35,7 +41,6 @@
 </template>
 
 <script>
-
   import APIS from "@/api/api"
   import ActionMenu from "@/components/ActionMenu"
 

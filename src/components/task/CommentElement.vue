@@ -1,10 +1,14 @@
 <template>
   <el-row class="comment-element">
-    <el-col :span="24" class="light-color">
-      <span><img :src="account_icon_url" class="user-icon-small" /> {{ comment.account.nickname }}
+    <el-col :span="22" class="light-color">
+      <span><img :src="account_icon_url" class="user-icon-small comment-info" /> {{ comment.account.nickname }}
         <img src="/static/male.png" v-if="comment.account.gender=='M'" class="sex-icon">
-        <img src="/static/female.png" v-if="comment.account.gender=='F'" class="sex-icon">| {{ comment.create_time }} </span>
-      <span><el-tag type="info" size="small" class="comment-index-tag" >{{ comment.index }}楼</el-tag></span>
+        <img src="/static/female.png" v-if="comment.account.gender=='F'" class="sex-icon">
+        <el-tag type="info" size="mini" class="comment-index-tag" >{{ comment.create_time }}</el-tag>
+      </span>
+    </el-col>
+    <el-col :span="2">
+      <span class="comment-info"><el-tag type="info" size="mini" class="comment-index-tag" >{{ comment.index }}楼</el-tag></span>
     </el-col>
     <el-col :span="24" class="content">
       <span>{{ comment.content }}</span>
@@ -38,7 +42,7 @@
     text-align: left;
   }
 
-  .user-icon-small {
+  .comment-info {
     position: relative;
     top: 7px;
   }

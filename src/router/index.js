@@ -12,9 +12,9 @@ import AccountMainLayout from '@/components/account/AccountMainLayout'
 import AccountDetail from '@/components/account/AccountDetail'
 import AppliedTaskList from '@/components/account/AppliedTaskList'
 import PublishedTaskList from '@/components/account/PublishedTaskList'
-import CommentList from '@/components/task/CommentList'
 import AccountPassword from '@/components/account/AccountPassword'
 import ConfirmRegister from '@/components/account/ConfirmRegister'
+import Feedback from '@/components/Feedback'
 
 Vue.use(Router)
 
@@ -35,6 +35,11 @@ export default new Router({
           path: 'main',
           name: 'main',
           component: Main
+        },
+        {
+          path: 'feedback',
+          name: 'feedback',
+          component: Feedback
         },
         {
           path: 'task-list',
