@@ -18,19 +18,16 @@ function request(context, method, url, data, login_redirect, closure) {
   req.then(response => {
     if (response.data.err_code < 0) {
 
-      const h = context.$createElement;
-
-      context.$notify({
-        title: '提示',
-        message: h('div', {style: 'color: red'}, '错误信息: ' + response.data.message)
+      context.$message({
+        message: "错误信息：" + response.data.message,
+        type: "error",
+        duration: 1000,
       })
     } else if (response.data.err_code == 0 && method == 'post') {
-
-      const h = context.$createElement;
-
-      context.$notify({
-        title: '提示',
-        message: h('div', {style: 'color: teal'}, '提交成功')
+      context.$message({
+        message: "提交成功",
+        type: "success",
+        duration: 1000,
       })
     }
     closure(response.data)
@@ -41,10 +38,10 @@ function request(context, method, url, data, login_redirect, closure) {
       context.$router.push({name: 'login'})
       return
     }
-    const h = context.$createElement;
-    context.$notify({
-      title: '提示',
-      message: h('div', {style: 'color: red'}, "服务器错误")
+    context.$message({
+      message: "服务器错误",
+      type: "error",
+      duration: 1000,
     })
   })
 }

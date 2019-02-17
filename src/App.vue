@@ -30,11 +30,13 @@ export default {
   color: #2c3e50;
 }
 
-
-body {
+html, body {
   margin: 0 0 0 0;
   font-size: 14px;
   font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Arial, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, sans-serif;
+  width: 100%;
+  height: 100%;
+  background-color: #F0F2F5;
 }
 
 
@@ -71,4 +73,18 @@ body {
   border-radius: 4px;
 }
 
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
+}
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+  
 </style>

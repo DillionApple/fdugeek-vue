@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20" class="root">
-    <el-col :span="13" :offset="1" class="logo-part">
+    <el-col :span="12" :offset="1" class="logo-part">
       <el-button class="backword-button hidden-sm-and-up" @click="route_backward">
         <el-icon class="el-icon-arrow-left"></el-icon>返回
       </el-button>
@@ -12,13 +12,9 @@
     </el-col>
     <el-col :span="10" class="function-buttons">
       <div v-if="$store.state.logined">
-        <el-popover
-          placement="bottom"
-          width="100"
-          trigger="hover">
-          <action-menu></action-menu>
-          <el-button slot="reference" class="nickname_button">{{ this.$store.state.user_info.nickname }} ▼ </el-button>
-        </el-popover>
+        <router-link :to="{name: 'account-detail'}">
+          <el-button class="nickname_button">{{ this.$store.state.user_info.nickname }} ▼ </el-button>
+        </router-link>
       </div>
       <div v-else>
         <router-link :to="{name: 'login'}">

@@ -1,37 +1,44 @@
 <template>
   <el-row class="action-menu">
     <el-row class="action-item-line">
-      <router-link to="/new-task/">
+      <router-link :to="{name: 'new-task'}">
         <el-button>
           <i class="el-icon-circle-plus-outline"></i> 发布需求
         </el-button>
       </router-link>
     </el-row>
     <el-row class="action-item-line">
-      <router-link to="/account/detail/">
+      <router-link :to="{name: 'account-detail'}">
         <el-button>
           <i class="el-icon-edit-outline"></i> 用户信息
         </el-button>
       </router-link>
     </el-row>
     <el-row class="action-item-line">
-      <router-link to="/account/password/">
+      <router-link :to="{name: 'account-password'}">
         <el-button>
           <i class="el-icon-warning"></i> 修改密码
         </el-button>
       </router-link>
     </el-row>
     <el-row class="action-item-line">
-      <router-link to="/account/published-task/">
+      <router-link :to="{name: 'published-task'}">
         <el-button>
           <i class="el-icon-date"></i> 我发布的任务
         </el-button>
       </router-link>
     </el-row>
     <el-row class="action-item-line">
-      <router-link to="/account/applied-task/">
+      <router-link :to="{name: 'applied-task'}">
         <el-button>
           <i class="el-icon-document"></i> 我报名的任务
+        </el-button>
+      </router-link>
+    </el-row>
+    <el-row class="action-item-line">
+      <router-link :to="{name: 'feedback'}">
+        <el-button>
+          <i class="el-icon-service"></i> 反馈
         </el-button>
       </router-link>
     </el-row>

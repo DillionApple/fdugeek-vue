@@ -5,11 +5,15 @@
     </el-header>
     <el-main>
       <el-row>
-        <el-col :span="24" v-if="this.$route.name == 'main'">
-          <router-view></router-view>
+        <el-col class="home-page" :span="24" v-if="this.$route.name == 'main'">
+          <transition name="fade">
+            <router-view></router-view>
+          </transition>
         </el-col>
-        <el-col :span="18" :offset="3" :xs="{span: 24, offset: 0}" v-else>
-          <router-view></router-view>
+        <el-col class="function-page" :span="18" :offset="3" :xs="{span: 24, offset: 0}" v-else>
+          <transition name="fade">
+            <router-view></router-view>
+          </transition>
         </el-col>
       </el-row>
     </el-main>
@@ -44,7 +48,11 @@
     margin-top: 60px;
     margin-bottom: 40px;
     z-index: 0;
-    background-color: #F0F2F5;
+    padding: 0;
+  }
+
+  .function-page {
+    padding: 10px;
   }
 
   .el-footer {
@@ -62,8 +70,10 @@
     }
     .el-main {
       margin-bottom: 0px;
-      padding-left: 10px;
-      padding-right: 10px;
+    }
+    .function-page {
+      padding-left: 5px;
+      padding-right: 5px;
     }
   }
 </style>

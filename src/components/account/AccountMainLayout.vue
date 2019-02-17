@@ -4,7 +4,9 @@
       <action-menu></action-menu>
     </el-col>
     <el-col :span="17" :offset="1" :xs="{span: 24, offset: 0}">
-      <router-view class="card"></router-view>
+      <transition name="fade">
+        <router-view class="card"></router-view>
+      </transition>
     </el-col>
   </el-row>
 </template>

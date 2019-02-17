@@ -9,7 +9,7 @@
           <span>用信息技术连接智慧校园</span>
         </el-col>
         <el-col :span="24" class="buttons">
-          <el-row :gutter="30">
+          <el-row>
             <el-col :span="24">
               <router-link to="/new-task/">
                 <el-button class="publish-btn">发布需求</el-button>
@@ -75,13 +75,11 @@
   .main {
     background: url("https://dn-coding-net-production-pp.codehub.cn/87230519-0f4a-4524-b9ef-aead33b0ca28.jpg") no-repeat center center fixed;
     background-size: cover;
-    min-height: 700px;
     background-color: #FFFFFF;
-
   }
 
   .main-content {
-    min-height: 700px;
+    height: 98vh;
     background-color: rgba(10, 10, 80, 0.2);
   }
 
