@@ -6,7 +6,7 @@
           报名理由：
         </el-col>
         <el-col :span="18" class="input-component">
-          <el-input type="textarea" placeholder="请简要介绍自己能为项目所做的共享" rows="10" v-model="application_text"></el-input>
+          <el-input type="textarea" placeholder="请简要介绍自己能为项目所做的贡献" rows="10" v-model="application_text"></el-input>
         </el-col>
       </el-row>
       <el-row class="line">
