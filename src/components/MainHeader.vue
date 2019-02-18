@@ -5,7 +5,7 @@
         <el-icon class="el-icon-arrow-left"></el-icon>返回
       </el-button>
       <span class="logo">
-        <router-link :to="logo_redirect_url">
+        <router-link :to="{name: 'main'}">
           FDU GEEK
         </router-link>
       </span>
@@ -49,15 +49,6 @@
           this.$router.back();
         }
       },
-      computed: {
-        logo_redirect_url() {
-          if (this.$store.state.logined) {
-            return "/task-list/"
-          } else {
-            return "/main/"
-          }
-        }
-      }
     }
 </script>
 
