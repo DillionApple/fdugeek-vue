@@ -14,9 +14,9 @@
           <h1>{{ this.task.title }}</h1>
         </el-col>
         <el-col :span="24" class="task-detail-publisher-line">
-          <span class="light-color"><img :src="creator_icon_url" class="user-icon-small"> {{ task.creator.nickname }}
-            <img src="/static/male.png" v-if="task.creator.gender=='M'" class="sex-icon">
-            <img src="/static/female.png" v-if="task.creator.gender=='F'" class="sex-icon">于 {{ task.create_time }} 发布</span>
+          <span class="light-color">
+            <user-icon-name-label :user_info="task.creator"></user-icon-name-label>
+            于 {{ task.create_time }} 发布</span>
           <task-state-tag :task_state="task.state"></task-state-tag>
         </el-col>
         <el-col :span="24" class="task-detail-info-line">
@@ -113,13 +113,14 @@
 
   import CommentList from '@/components/task/CommentList'
   import APIS from "@/api/api"
-  import TASK_TYPE_MAP from "@/api/task_type_map"
+  import TASK_TYPE_CONST from "@/api/task_type_const"
   import request from "@/api/request"
   import TaskStateTag from "@/components/task/TaskStateTag";
+  import UserIconNameLabel from "@/components/account/UserIconNameLabel";
 
     export default {
       name: "TaskDetail",
-      components: {TaskStateTag, CommentList},
+      components: {UserIconNameLabel, TaskStateTag, CommentList},
       data() {
         return {
           loading: false,
@@ -141,7 +142,7 @@
           return "/application/" + this.task.task_id
         },
         task_type() {
-          return TASK_TYPE_MAP[this.task.type]
+          return TASK_TYPE_CONST.task_type_map[this.task.type]
         }
       },
       methods: {
@@ -175,6 +176,15 @@
         },
         make_comment() {
           let vm = this
+
+          if (this.comment == "") {
+            vm.$message({
+              message: "评论不能为空",
+              type: "warning",
+              duration: 1000,
+            })
+            return
+          }
 
           let post_data = {
             task_id: this.task.task_id,

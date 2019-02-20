@@ -2,9 +2,8 @@
   <div class="root task-list-element">
     <el-row class="header">
       <el-col :span="24">
-        <img :src="user_icon_url" class="user-icon-small"> {{ task.creator.nickname }}
-        <img src="/static/male.png" class="sex-icon" v-if="task.creator.gender=='M'">
-        <img src="/static/female.png" class="sex-icon" v-if="task.creator.gender=='F'"> | <timeago :datetime="task.create_time"></timeago> 发布
+        <user-icon-name-label :user_info="task.creator"></user-icon-name-label>
+        | <timeago :datetime="task.create_time"></timeago> 发布
         <task-state-tag :task_state="task.state"></task-state-tag>
       </el-col>
     </el-row>
@@ -37,13 +36,14 @@
 
 
   import APIS from "@/api/api"
-  import TASK_TYPE_MAP from "@/api/task_type_map"
+  import TASK_TYPE_CONST from "@/api/task_type_const"
 
   import TaskStateTag from "@/components/task/TaskStateTag"
+  import UserIconNameLabel from "@/components/account/UserIconNameLabel"
 
     export default {
       name: "TaskListElement",
-      components: {TaskStateTag, },
+      components: {UserIconNameLabel, TaskStateTag, },
       props: {
         task : {}
       },
@@ -52,7 +52,7 @@
           return APIS.MEDIA_ROOT + this.task.creator.icon
         },
         task_type() {
-          return TASK_TYPE_MAP[this.task.type]
+          return TASK_TYPE_CONST.task_type_map[this.task.type]
         }
       },
     }
@@ -107,16 +107,7 @@
     margin-bottom: 10px;
   }
 
-  .user-icon-small {
-    position: relative;
-    top: 7px;
-  }
 
-  .sex-icon {
-    position: relative;
-    width: 15px;
-    top: 2px;
-  }
 
   .task-link {
     text-decoration: none;

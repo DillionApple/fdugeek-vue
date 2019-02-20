@@ -39,7 +39,7 @@ function request(context, method, url, data, login_redirect, closure) {
       return
     }
     context.$message({
-      message: "服务器错误",
+      message: response.response.data.message,
       type: "error",
       duration: 1000,
     })

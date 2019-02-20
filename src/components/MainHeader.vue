@@ -87,36 +87,6 @@
     text-align: right;
   }
 
-  .username {
-    text-decoration: none;
-    color: #000000;
-  }
-
-  .logo-icon {
-    height: 30px;
-    position: relative;
-    top: 10px;
-  }
-
-  .account-popover-link {
-    text-align: center;
-    margin-bottom: -1px;
-  }
-
-  .account-popover-link .el-button {
-    width: 140px;
-    border: 0;
-    color: #727F8E;
-    font-weight: lighter;
-  }
-
-  .user-icon-small {
-    height: 30px;
-    width: 30px;
-    top: 10px;
-    position: relative;
-  }
-
   .backword-button {
     padding: 5px;
     font-size: 16px;

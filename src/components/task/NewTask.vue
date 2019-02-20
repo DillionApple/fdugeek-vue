@@ -67,6 +67,7 @@
 
   import request from '@/api/request'
   import APIS from '@/api/api'
+  import TASK_TYPE_CONST from "@/api/task_type_const";
 
     export default {
       name: "NewTask",
@@ -74,21 +75,7 @@
         return {
           loading: false,
           task: {},
-          task_type_options: [
-            {
-              value: "build_group",
-              label: "开发团队招募"
-            }, {
-              value: "programing",
-              label: "开发任务"
-            }, {
-              value: "tutor",
-              label: "家教"
-            }, {
-              value: "others",
-              label: "其它",
-            }
-          ],
+          task_type_options: TASK_TYPE_CONST.task_type_options,
         }
       },
       props: {

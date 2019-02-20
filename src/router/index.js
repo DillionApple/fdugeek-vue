@@ -10,6 +10,7 @@ import TaskMainLayout from '@/components/task/TaskMainLayout'
 import Main from '@/components/Main'
 import AccountMainLayout from '@/components/account/AccountMainLayout'
 import AccountDetail from '@/components/account/AccountDetail'
+import AccountPublicDetail from '@/components/account/AccountPublicDetail'
 import AppliedTaskList from '@/components/account/AppliedTaskList'
 import PublishedTaskList from '@/components/account/PublishedTaskList'
 import AccountPassword from '@/components/account/AccountPassword'
@@ -27,9 +28,9 @@ export default new Router({
       redirect: '/main',
       children: [
         {
-          path: 'test',
+          path: 'test/:username',
           name: 'test',
-          component: ConfirmRegister
+          component: AccountPublicDetail
         },
         {
           path: 'main',
@@ -40,6 +41,11 @@ export default new Router({
           path: 'feedback',
           name: 'feedback',
           component: Feedback
+        },
+        {
+          path: 'account_public_detail/:username',
+          name: 'account_public_detail',
+          component: AccountPublicDetail
         },
         {
           path: 'task-list',

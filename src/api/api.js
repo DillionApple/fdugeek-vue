@@ -17,6 +17,7 @@ var APIS = {
   CONFIRM_REGISTER_URL: ROOT_URL + "/account/confirm_register/",
   LOGOUT_URL: ROOT_URL + "/account/logout/",
   GET_ACCOUNT_DETAIL_URL: ROOT_URL + "/account/detail/",
+  GET_ACCOUNT_PUBLIC_DETAIL_URL: ROOT_URL + "/account/public_detail/",
   UPLOAD_PICTURE_URL: ROOT_URL + "/picture_bed/upload/",
   CHANGE_ACCOUNT_ICON_URL: ROOT_URL + "/account/change_icon/",
   CHANGE_ACCOUNT_DETAIL_URL: ROOT_URL + "/account/change_detail/",

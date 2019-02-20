@@ -37,6 +37,7 @@
   import TaskListElement from "@/components/task/TaskListElement"
   import APIS from "@/api/api"
   import request from "@/api/request"
+  import TASK_TYPE_CONST from "@/api/task_type_const"
 
   export default {
     name: "TaskList",
@@ -47,24 +48,7 @@
         selected_task_type: "all",
         selected_task_state: "all",
         search_keyword: "",
-        task_type_options: [
-          {
-            value: "all",
-            label: "全部类型"
-          }, {
-            value: "build_group",
-            label: "开发团队招募"
-          }, {
-            value: "programing",
-            label: "开发任务"
-          }, {
-            value: "tutor",
-            label: "家教"
-          }, {
-            value: "others",
-            label: "其它"
-          }
-        ],
+        task_type_options: TASK_TYPE_CONST.task_type_options,
         task_state_options: [
           {
             value: "all",

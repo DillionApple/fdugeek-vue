@@ -73,6 +73,19 @@ html, body {
   border-radius: 4px;
 }
 
+.user-icon-big {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.user-icon-large {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
 
 .fade-enter-active, .fade-leave-active {
   transition-property: opacity;

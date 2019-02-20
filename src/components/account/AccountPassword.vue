@@ -48,14 +48,25 @@
       methods: {
         submit() {
           let vm = this;
+
           if (vm.new_password != vm.repeat_new_password) {
-            const h = vm.$createElement
-            vm.$notify({
-              title: '提示',
-              message: h('div', {style: 'color: red'}, '两次密码不一致')
+            vm.$message({
+              message: '两次密码不一致',
+              type: 'warning',
+              duration: 1000,
             })
             return
           }
+
+          if (vm.new_password == "") {
+            vm.$message({
+              message: '新密码不能为空',
+              type: 'warning',
+              duration: 1000,
+            })
+            return
+          }
+
           let post_data = {
             old_password: vm.old_password,
             new_password: vm.new_password
