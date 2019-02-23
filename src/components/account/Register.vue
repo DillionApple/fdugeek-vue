@@ -1,7 +1,7 @@
 <template>
   <el-row v-loading="loading">
     <el-row v-if="!register_success">
-      <p>请注册</p>
+      <p>通过学邮进行注册</p>
       <el-col :span="12" :offset="6" :xs="{span: 24, offset: 0}">
         <el-row class="line">
           <el-input v-model="username" placeholder="学号/工号">
