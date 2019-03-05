@@ -59,6 +59,16 @@
             })
             return
           }
+          let reg = /(?![a-z]+$)(?![A-Z]+$)(?![0-9]+$)(?![\!@#\$%\^&\*_]+$)(^[a-zA-Z0-9\!@#\$%\^&\*_]{6,20}$)/;
+          if (!reg.test(vm.password1)) {
+            const h = vm.$createElement;
+            vm.$notify({
+              title: "提示",
+              message: h('div', {style: 'color: red'}, "请使用6-20位密码，且必须含有大写字母，小写字母，数字和特殊符号中的至少两种")
+            });
+            return
+          }
+
 
           request(vm, 'post', APIS.REGISTER_URL, {'username': vm.username, 'password': vm.password1}, false, response_data => {
             if (response_data.err_code == 0) {
