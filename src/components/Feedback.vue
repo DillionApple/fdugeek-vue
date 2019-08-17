@@ -4,6 +4,7 @@
         <el-row v-if="!submitted">
           <h3>您的反馈是我们前进的动力！</h3>
           <el-input type="textarea" rows="10" placeholder="请输入您的反馈信息" v-model="feedback_text"></el-input>
+          <el-input type="text" placeholder="您的联系邮箱" v-model="contact_email"></el-input>
           <el-button
             type="primary" size="small"
             class="submit-button"
@@ -28,16 +29,18 @@
       data() {
         return {
           feedback_text: "",
+          contact_email: "",
           submitted: false
         }
       },
       methods: {
         submit_feedback() {
-          let vm = this
+          let vm = this;
 
           let post_data = {
-            feedback: vm.feedback_text
-          }
+            feedback: vm.feedback_text,
+            contact_email: vm.contact_email,
+          };
 
           request(vm, 'post', APIS.FEEDBACK_URL, post_data, false, response_data => {
             if (response_data.err_code == 0) {
@@ -53,6 +56,10 @@
 <style scoped>
 
   .submit-button {
+    margin-top: 10px;
+  }
+
+  .el-input {
     margin-top: 10px;
   }
 
