@@ -60,14 +60,14 @@
 
   .root {
     background-color: #FFF;
-    line-height: 60px;
     border-bottom: solid 1px lightgrey;
     box-shadow: 0px 3px 5px #EEEEEE;
   }
 
   .logo-part {
-    line-height: 60px;
+    line-height: 40px;
     text-align: left;
+    padding-top: 25px;
   }
 
   .logo a {
@@ -85,6 +85,8 @@
 
   .function-buttons {
     text-align: right;
+    line-height: 40px;
+    padding-top: 25px;
   }
 
   .backword-button {

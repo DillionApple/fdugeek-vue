@@ -1,6 +1,10 @@
-let HOST="127.0.0.1:8000"
+let HOST="fdugeek.com";
+// for debug
+// let HOST="127.0.0.1:8000"
 
-let ROOT_URL = "http://" + HOST
+let ROOT_URL = "https://" + HOST + "/api";
+// for debug
+// let ROOT_URL = "http://" + HOST
 
 var APIS = {
   MEDIA_ROOT: ROOT_URL,
@@ -29,7 +33,7 @@ var APIS = {
   DELETE_TASK: ROOT_URL + "/task/delete/",
   GET_COMMENT_LIST: ROOT_URL + "/task/comments/",
   MAKE_COMMENT: ROOT_URL + "/task/make_comment/",
-}
+};
 
 export default APIS
 
