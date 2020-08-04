@@ -1,10 +1,15 @@
-let HOST="fdugeek.com";
-// for debug
-// let HOST="127.0.0.1:8000"
+let DEBUG = true;
 
-let ROOT_URL = "https://" + HOST + "/api";
-// for debug
-// let ROOT_URL = "http://" + HOST
+var HOST = "";
+var ROOT_URL = "";
+
+if (DEBUG) {
+  HOST="127.0.0.1:8000"
+  ROOT_URL = "http://" + HOST
+} else {
+  HOST="fdugeek.com";
+  ROOT_URL = "https://" + HOST + "/api";
+}
 
 var APIS = {
   MEDIA_ROOT: ROOT_URL,

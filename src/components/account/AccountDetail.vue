@@ -1,11 +1,11 @@
 <template>
   <el-row class="account" v-loading="loading">
     <el-col :span="24">
-      <el-row class="user-icon-line" :gutter="50">
-        <el-col :span="13" class="user-icon-col">
+      <el-row class="user-icon-line">
+        <el-col :span="11" class="user-icon-col">
           <img :src="user_icon" class="user-icon">
         </el-col>
-        <el-col :span="11" class="change-user-icon-btn-col">
+        <el-col :span="6" :xs="{span: 8, offset: 0}" class="change-user-icon-btn-col">
           <label for="file-upload" class="custom-file-upload">
             修改头像
           </label>
@@ -48,7 +48,7 @@
         <el-col :span="8" class="input-label">
           性别：
         </el-col>
-        <el-col :span="10" class="input-component>">
+        <el-col :span="16" class="input-component">
           <el-radio v-model="user_info.gender" label="U">保密</el-radio>
           <el-radio v-model="user_info.gender" label="M">男</el-radio>
           <el-radio v-model="user_info.gender" label="F">女</el-radio>
@@ -95,7 +95,7 @@
       methods: {
         change_icon(f) {
 
-          let vm = this
+          let vm = this;
 
           let file= f.target.files[0];
           if (window.FileReader) {
@@ -104,7 +104,7 @@
             let form_data=new window.FormData();
             form_data.append('picture',file);
             request(vm, 'post', APIS.CHANGE_ACCOUNT_ICON_URL, form_data, true, response_data => {
-              vm.$store.commit("update_user_icon_url", response_data.data.icon)
+              vm.$store.commit("update_user_icon_url", response_data.data.icon);
               vm.icon_url = APIS.MEDIA_ROOT + response_data.data.icon
             })
           }
@@ -122,7 +122,7 @@
       },
       data() {
         return {
-          loading: false,
+          loading: true,
           user_info: {}
         }
       },
@@ -132,7 +132,14 @@
         }
       },
       mounted() {
-        this.user_info = this.$store.state.user_info
+        let vm = this;
+        let interval = setInterval(function () {
+          vm.user_info = vm.$store.state.user_info;
+          if (vm.user_info) {
+            clearInterval(interval);
+            vm.loading = false;
+          }
+        }, 1000);
       }
     }
 </script>
@@ -142,9 +149,10 @@
   .user-icon-col {
     text-align: right;
   }
-  
+
   .change-user-icon-btn-col {
-    text-align: left;
+    text-align: right;
+
   }
 
   .user-icon-line {
